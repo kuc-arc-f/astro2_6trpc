@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { trpc } from '../../utils/trpc';
+
+const PUBLIC_ANYBODY = import.meta.env.PUBLIC_ANYBODY;
+console.log("PUBLIC_ANYBODY=", PUBLIC_ANYBODY);
+
+const url = import.meta.env.PUBLIC_API_URL;
+//console.log("url=", url);
+//
+const hello = await trpc.hello.query();
+console.log(hello);	
+const user = await trpc.userById.query('1');
+console.log(user);
+const userList = await trpc.getUserList.query();
+console.log("#userList");
+console.log(userList);
+---
+
+<Layout title="Welcome to Astro.">
+	<main class="container">
+		<a href={`/`}>[ Top ]</a>
+		<hr />		
+		<h1>tRPC</h1>
+		<p class="instructions">hoge123
+		</p>
+		<hr />
+		hello : {hello}
+		<hr />
+		<button id="btn_save" class="btn btn-primary">Add</button>
+	</main>
+</Layout>
+<!-- -->
+<style>
+</style>
+<!-- -->
+<script src="./Test.ts"></script>
